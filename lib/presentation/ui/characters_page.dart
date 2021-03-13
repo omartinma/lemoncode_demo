@@ -29,15 +29,44 @@ class _CharactersBody extends StatelessWidget {
       return Center(
         child: Text("Oops, no hay personajes"),
       );
-    return ListView.separated(
-      itemCount: characters.length,
-      itemBuilder: (context, index) => _CharacterListElement(
-        character: characters[index],
-      ),
-      separatorBuilder: (context, index) => Container(
-        height: 1,
-        color: Colors.grey.shade200,
-      ),
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final width = constraints.maxWidth;
+        final breakPointSM = 600;
+        final breakPointMD = 960;
+        final breakPointLG = 1280;
+        if (width <= breakPointSM)
+          return ListView.separated(
+            itemCount: characters.length,
+            itemBuilder: (context, index) => _CharacterListElement(
+              character: characters[index],
+            ),
+            separatorBuilder: (context, index) => Container(
+              height: 1,
+              color: Colors.grey.shade200,
+            ),
+          );
+
+        var elementsPerRow;
+        var characterRatio;
+        if (width < breakPointMD) {
+          elementsPerRow = 3;
+          characterRatio = 1.5;
+        } else {
+          elementsPerRow = 4;
+          characterRatio = 1.5;
+        }
+        return GridView.count(
+          crossAxisCount: elementsPerRow,
+          childAspectRatio: characterRatio,
+          children: characters
+              .map((e) => _CharacterListElement(
+                    character: e,
+                  ))
+              .toList(),
+        );
+      },
     );
   }
 }
