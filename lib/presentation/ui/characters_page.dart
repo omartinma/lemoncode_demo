@@ -34,7 +34,10 @@ class _CharactersBody extends StatelessWidget {
       itemBuilder: (context, index) => _CharacterListElement(
         character: characters[index],
       ),
-      separatorBuilder: (context, index) => Divider(),
+      separatorBuilder: (context, index) => Container(
+        height: 1,
+        color: Colors.grey.shade200,
+      ),
     );
   }
 }

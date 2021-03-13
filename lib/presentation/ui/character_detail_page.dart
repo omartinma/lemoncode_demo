@@ -19,11 +19,11 @@ class CharacterDetailsPage extends StatelessWidget {
           Hero(
             tag: "image_hero_${character.name}",
             child: Container(
-              //width: MediaQuery.of(context).size.width,
+              width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: Image.network(
                 character.image,
-                fit: BoxFit.fitHeight,
+                fit: BoxFit.fill,
               ),
             ),
           ),
