@@ -52,7 +52,7 @@ class _CharactersBody extends StatelessWidget {
         var characterRatio;
         if (width < breakPointMD) {
           elementsPerRow = 3;
-          characterRatio = 1.5;
+          characterRatio = 1.2;
         } else {
           elementsPerRow = 4;
           characterRatio = 1.5;
@@ -106,10 +106,15 @@ class _CharacterListElement extends StatelessWidget {
             Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    character.name,
-                    style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                  Flexible(
+                    child: Text(
+                      character.name,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                    ),
                   ),
                   _CharacterStatus(status: character.status),
                 ],
